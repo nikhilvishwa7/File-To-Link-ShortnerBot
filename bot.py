@@ -1,5 +1,7 @@
-
+import re
+import aiohttp
 import os
+from os import environ
 import asyncio
 import traceback
 from binascii import (
@@ -60,8 +62,8 @@ async def main(bot: Client, message: Message):
       send_msg = await message.forward(config.CHANNEL_ID)
       file_id = str(send_msg.message_id) 
       file_link = f"https://t.me/{config.BOT_USERNAME}?start=shortner_{file_id}"
-      link_shortner = requests.get(f"{shortner_site}/api?api={api_key}&url={file_link}&alias=CustomAlias")
-      text_ok = await reply.edit("your file stored successfully to our database here is your url", 
+      url_link = await get_shortlink(file_link)
+      text_ok = await reply.edit(f"your file stored successfully to our database here is your url\n {url_link}") 
    except Exception as err:
       text_op = await reply.edit("f**ERROR**\n\n{err}\n\n**SEND ASAP TO SUPPORT FOR FIXES**") 
 
@@ -109,5 +111,14 @@ async def start(bot: Client, m: Message):
                 await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
         except Exception as err:
             text_op = await m.reply.text("f**ERROR**\n\n{err}\n\n**SEND ASAP TO SUPPORT FOR FIXES**") 
+
+async def get_shortlink(file_link):
+    url = "https://easysky.in/api?api=8644d61bb75d25519b6b0acdec99bf369fa1cbdd&url={file_link}"
+    params = {'api': API_KEY, 'url': link}
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url, params=params, raise_for_status=True) as response:
+            data = await response.json()
+            return data["shortenedUrl"]
 
 Bot.start() 
