@@ -1,0 +1,785 @@
+✖𝘼𝙇𝙇 𝘾𝙊𝘿𝙀𝙎 𝘽𝙔 @𝗭𝗚𝗢𝗗𝗣𝗔𝗣𝗔
+
+😍𝙅𝙊𝙄𝙉 𝙊𝙐𝙍 𝙊𝙁𝙁𝙄𝘾𝙄𝘼𝙇 𝘾𝙃𝘼𝙉𝙉𝙀𝙇~ 
+@𝘿𝘼𝙍𝙆𝙏𝙐𝙁𝙁
+
+𝗔𝗟𝗟 𝗖𝗥𝗘𝗗𝗜𝗧𝗦 𝗚𝗜𝗩𝗘𝗡 𝗕𝗘𝗟𝗟𝗢𝗪⬇
+
+𝙀𝙉𝙅𝙊𝙔😁
+
+========================================
+
+👉 This Is Instant Broadcast Bjs
+var fullBotUsers = Bot.getProperty("wholeUsers",[])
+var already = User.getProperty("already")
+if (!already) {
+  fullBotUsers.push(user.telegramid)
+  Bot.setProperty("wholeUsers", fullBotUsers, "json")
+User.setProperty("already", user.telegramid, "text")}
+
+Add This Bjs In Start Command On Top
+
+❤️ Command :- /broadcast
+
+💛Answer :-  *Send Your Text For Broadcast*
+
+✅ Wait For Answer :- On
+
+🔮 Bjs :- var fullBotUsers = Bot.getProperty("wholeUsers")
+if (message.length > 10000) {
+  Bot.sendMessage("Message Is Too Big.")
+ Bot.runCommand("Broadcastt") 
+return
+}
+for (var index in fullBotUsers) {
+  var info = fullBotUsers[index]
+  var polll = [[{text:"🎤 Talk to Admin", callback_data:"/replyadmin_sos"}]]  
+  Api.sendMessage({
+    chat_id: info,
+    text: "*🔊 Admin ~ BroadCast\n\n"+message+"*",
+    parse_mode: "markdown", 
+    disable_web_page_preview: true, 
+    reply_markup:{inline_keyboard: polll}
+  })
+}
+Bot.sendMessage("*✔️Broadcast Sent To All Active Users* Your Broadcast Was: \n\n"+message+"")
+
+========================================
+
+Telegra.ph uploader Bjs on basis of POLL
+Replying feature
+
+
+
+Command :- /tg
+
+Bjs :- if (!request.reply_to_message.photo[0]) {
+  Bot.sendMessage("*Please Reply To A Photo Only!*")
+  return
+}
+Bot.sendMessage("Uploading....")
+if (request.reply_to_message.photo[3]) {
+  Api.getFile({ file_id: request.reply_to_message.photo[3].file_id, on_result: "/photosuc" })
+  return
+}
+if (request.reply_to_message.photo[2]) {
+  Api.getFile({ file_id: request.reply_to_message.photo[2].file_id, on_result: "/photosuc" })
+  return
+}
+if (request.reply_to_message.photo[1]) {
+  Api.getFile({ file_id: request.reply_to_message.photo[1].file_id, on_result: "/photosuc" })
+  return
+}
+if (request.reply_to_message.photo[0]) {
+  Api.getFile({ file_id: request.reply_to_message.photo[0].file_id, on_result: "/photosuc" })
+  return
+}
+
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+
+Command :- /photosuc
+
+Bjs :- 
+var limk =
+  "https://api.telegram.org/file/bot" +
+  bot.token +
+  "/" +
+  options.result.file_path +
+  ""
+HTTP.post({url:"https://api.secretprojects.xyz/v1/telegraph/upload/?url="+limk+"", success:"/ontgsup"})
+
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+Command :- /ontgsup
+
+Bjs :- 
+var r = JSON.parse(content)
+var s = r.telegraph_url
+Bot.sendMessage(s,{disable_web_page_preview:false})
+
+Created By :- @Newonep
+Api By :- @SecretProjectsOwner
+
+=======================================
+
+Play Store Searching Bjs on request of @Enjoy002
+
+Command :- /app
+
+Bjs :- if(!params){
+  Bot.sendMessage("*Params error*\n\n_send like /app (App name)_");
+}
+else{
+Bot.sendMessage("*Gathering Infomation Please Wait!!*")
+HTTP.get({ url:"https://api.secretprojects.xyz/v1/playstore/?app="+params+"", folow_redirects: true, success:"/onAppinfo" }) 
+  }
+
+
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖
+
+
+Command :- /onAppinfo
+
+Bjs :- var Data = JSON.parse(content)
+
+var Name = Data.name
+var Id = Data.id
+var Category = Data.category
+var Type = Data.type
+var Developer = Data.developer
+var Summary = Data.summary
+var Description = Data.description
+var Pic = Data.icon
+var Installs = Data.installs
+var Whatsnew = Data.whatsnew
+var Rating = Data.rating
+var Price = Data.price
+
+var Text = "<b>✅ Found App Info\n\n▪️Name:</b> <code>"+Name+"</code>\n<b>▪️ID:</b> <code>"+Id+"</code>\n<b>▪️Category:</b> <code>"+Category+"</code>\n<b>▪️Type:</b> <code>"+Type+"</code>\n<b>▪️Developer:</b> <code>"+Developer+"</code>\n<b>▪️Installs:</b> <code>"+Installs+"</code>\n<b>▪️Ratings:</b> <code>"+Rating+"</code>\n<b>▪️Description:</b> <code>"+Description+"</code>\n<b>▪️Summary:</b> <code>"+Summary+"</code>\n<b>▪️Whatsnew:</b> <code>"+Whatsnew+"</code>\n<b>▪️Price:</b> <code>"+Price+"</code>"
+
+var inlkey = [[{ text: "Thank You", url: "https://t.me/botdiscuoo" }]]
+
+if(Pic.includes("https://")){
+Api.sendPhoto({ photo: Pic, caption: Text, parse_mode: "HTML", disable_web_page_preview: true, reply_markup: { inline_keyboard: inlkey  } })
+return
+}
+Api.sendMessage({ text: Text, parse_mode: "HTML", disable_web_page_preview: true, reply_markup: { inline_keyboard: inlkey } })
+
+
+Create By :- @Newonep
+
+======================================
+
+🥰 Bulk Bit.ly url Shortener 
+Requested by Many Members 
+
+🧩 Command : *
+Make Master command for only url shortener bot and make your own choice command for your multiple tool bot
+
+🧩 BJS : var apikey = "3de0d31af3fde948f935c35075f613ea2d046a3e" 
+ let link = message
+function detectURLs(msg) { 
+  var urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/g 
+  return msg.match(urlRegex) 
+} 
+let urlg = detectURLs(link) 
+for (const links of urlg) { 
+  var url ="https://api-ssl.bitly.com/v3/shorten?access_token=" + apikey + "&longUrl=" + links 
+  HTTP.post({ 
+    url: url, 
+    success: "/onshort" 
+  }) 
+}
+
+Now make Another Command for Handle Get or Post Requests.
+
+🧩 Command : /onshort
+🧩 BJS : let val = JSON.parse(content)
+
+let short = val.data.url
+let err = val.status_txt
+let long = val.data.long_url
+
+
+if (err == "INVALID_URI") {
+  Bot.sendMessage("This is not a valid URL,")
+  return
+}
+
+Bot.sendMessage("Long Url : "+long+"\n\nShort Link : "+short+"\n➖➖➖➖➖➖➖➖➖➖➖➖",{disable_web_page_preview:true})
+
+This Code for Bit.ly you can modify and make Another site bot. Like gplinks, za.gl etc
+
+💌 This bot Is simple if you send bulk links bot send one-by-one short link. If you need pro version of the bot you can contact @sweet_banna . in pro version u can get all link in one msg. If u send bulk links msg in response you get all link shorted and replaced with you long url.Thank you For Here
+
+Copy with Credit
+
+=======================================
+
+📚 Instagram Link Validator
+
+🗞️CMD :  Your Choice
+BJS
+
+
+if(params){
+var p = /^\s*(https\:\/\/)?instagram\.com\/[a-z\d-_]{1,255}\s*$/i
+} 
+if (params.match(p)) {
+  Bot.sendMessage("valid")
+} else {
+  Bot.sendMessage("invalid")
+}
+
+
+--------------¬
+
+U can delete params and use 
+Wait for Answer ON 
+And BJS 
+
+
+var p = /^\s*(https\:\/\/)?instagram\.com\/[a-z\d-_]{1,255}\s*$/i
+
+if (message.match(p)) {
+  Bot.sendMessage("valid")
+} else {
+  Bot.sendMessage("invalid")
+}
+
+Premium Bjs ™
+
+=======================================
+
+📥How To Make Video Downloader Bot Of YouTube 
+
+Code - Bot.on('message::url', async ctx => {
+function validURL(url) {
+  var regex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
+  return regex.test(url)
+}
+
+if (validURL(ctx.message.text)) {
+ctx.api.sendVideo(ctx.from.id , "https://coinsky.xp3.biz/api/youtube/download.php?url="+ctx.message.text+"")
+return
+}else{ 
+return
+}
+});
+
+IT WILL NOT DOWNLOAD ALL VIDEO LATER I WILL SEND API FOR ALL VIDEO TILL THAT TIME USE THIS
+
+Note: This is not BJS. 
+We use this code in BotMate
+
+MADE BY @DigitalBotzAdmin
+
+======================================
+
+♻️How To Check Group Adminlist By Sending /staff
+
+Code :- 
+Bot.command('staff', async ctx =>{
+if(ctx.chat.chat_type == "private"){
+return
+}
+  var users = await ctx.api.getChatAdministrators(ctx.chat.id)
+//options recived
+var admins = users.filter(Admins => Admins.can_manage_chat == true)
+//admins founded
+var ownerinfo = users.filter(Owner => Owner.status == "creator")
+//owner founded
+//creating Message of Admins
+var msg = "⚜️ Admins\n\n"
+for (var index in admins) {
+  var u = admins[index]
+  var custom_title = u.custom_title
+  if (!custom_title) {
+    title = ""
+  } else {
+    title = " » " + u.custom_title + ""
+  }
+  msg += "- <a href='tg://user?id="+u.user.id+"'>" +u.user.first_name + "</a>" +title+"\n"
+}
+//created Message of Admins
+//creating Message of Owner
+var ownerTitle = ownerinfo[0].custom_title
+if(!ownerTitle){
+var Title = ""
+}else{
+var Title = ownerinfo[0].custom_title
+}
+var owner = "GROUP STAFF\n\n👑Founder\n- <a href='tg://user?id="+ownerinfo[0].user.id+"'>" +ownerinfo[0].user.first_name + "</a> » " +Title+"\n\n"
+//created Message of Admins
+//Sending Message of Result
+ctx.reply("<b>"+owner+""+msg+"</b>",{
+parse_mode:"HTML"
+})
+})
+
+❓ Need More Codes ?
+#️⃣ Send #request_code in @RareDiscussion 
+⏳ And Wait for it.
+🟢COPY WITH CREDIT🟢
+
+Note: This is not BJS. 
+We use this code in BotMate
+
+© @DigitalBotzAdmin
+
+=======================================
+
+Game betting 
+
+BJS
+var bal = Libs.ResourcesLib.userRes("balance")
+var buttons = [
+  [
+    { title: "2 TRX", command: "/ondart" },
+    { title: "1 TRX", command: "/ondart" },
+    { title: "5 TRX", command: "/ondart" }
+  ],
+  [{ title: "Back ", command: "/Back" }]
+]
+
+Bot.sendInlineKeyboard(
+  buttons,
+  "Here you can play darts and win more TRX.\nSet the amount of your bet or choose from suggested options.\n\nThe rules are simple:\n\nIf you hit red - you win x2 of the bet.\nWhite or off - you lose the bet.\n\nAvailable balance: " +
+    bal.value(6).toFixed(6) +
+    " TRX"
+)
+
+Command /ondart
+var balance = Libs.ResourcesLib.userRes("balance")
+if (balance.value() < 1) {
+  Bot.sendMessage("You don't have enough funds")
+} else {
+  Api.sendDice({
+    on_result: "/result_dart",
+    emoji: "🎯"
+  })
+}
+
+Command /result_dart
+var balance = Libs.ResourcesLib.userRes("balance")
+var result = options.result.dice.value
+if (6 == result) {
+  balance.add(2)
+  Bot.sendMessage("You win")
+}
+if (5 == result) {
+  balance.add(-1)
+  Bot.sendMessage("You lose")
+}
+if (4 == result) {
+  balance.add(2)
+  Bot.sendMessage("You win")
+}
+if (3 == result) {
+  balance.add(-1)
+  Bot.sendMessage("You lose")
+}
+if (2 == result) {
+  balance.add(2)
+  Bot.sendMessage("You win")
+}
+if (1 == result) {
+  balance.add(-1)
+  Bot.sendMessage("You lose")
+}
+
+=======================================
+
+⁉️ How To Get YouTube Video Details Like,Dislike,Title,Category,Views etc....
+
+🌀 Command = 📺 Yt Details
+
+💠 Answer = 〽️ Enter YouTube Video Url To Get Video Details
+
+🌐 BJs = 
+function validURL(url) {
+
+  var regex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
+
+  return regex.test(url)
+
+}
+
+
+
+if (validURL(message)) {
+Bot.sendMessage("*🏵️ Video Details Generating From https://piyushytdetails-api-production.up.railway.app*")
+HTTP.get({url: "https://piyushytdetails-api-production.up.railway.app/api?url="+message+"", success: "/onYtDetails"})
+}else{
+Bot.sendMessage("*⛔ Invalid YouTube Video Url Please Enter Valid YouTube Video Url*") }
+
+
+♾ Command = /onYtDetails
+🔘 BJs = var data = JSON.parse(content)
+var title = data.title
+var views = data.views
+var likes = data.likes
+var dislikes = data.dislikes
+var pd = data.publishdate
+var thumbnail = data.thumbnails
+var category = data.category
+var cn = data.channel_name
+var id = data.id
+var subscribers = data.subscriber
+
+var data_buttons = [[{text: "📺 Watch Video On YouTube", url: "https://www.youtube.com/watch?v="+id+""}]]
+Api.sendPhoto({photo: "https://www.youtube.com/watch?v="+id+"", caption: "*YouTube Video Information Finded ✅\n\n📝 Video Title*: "+title+"\n👁️ *Views*: "+views+"\n👍 *Likes*: "+likes+"\n👎 *Dislikes*: "+dislikes+"\n🗓️ *Publish Date*: "+pd+"\n🔰 *Thumbnail*: "+thumbnail+"\n📌 *Category*: "+category+"\n📛 *Channel Name*: "+cn+"\n❤️ *Video Id*: "+id+"\n👨‍👩‍👦‍👦 *Subscribers*: "+subscribers+"\n*© Details Generated By: @"+bot.name+"\n❤️Using This Api https://piyushytdetails-api-production.up.railway.app*",parse_mode: "Markdown",reply_markup: {inline_keyboard: data_buttons}})
+
+💻 Coded Dev: @PIYUSH_raj007
+
+=======================================
+
+Qr Code Scanner Code
+
+Command: /qrcode 
+
+Answer: Send Qr code link don't send photo
+
+Wait for answer on
+
+Bjs: 
+User.setProperty("qrlink", message, "string")
+HTTP.get({
+  url: "http://api.qrserver.com/v1/read-qr-code/?fileurl="+message+"",
+  success: "sys/qr"
+})
+
+Command: sys/qr
+
+Bjs: 
+
+var qr = User.getProperty("qrlink")
+var msg = content
+var pro = msg.split(/"/)[11]
+  Api.sendPhoto({
+    photo: qr,
+    caption: "*🔩 Qr Code Scanned\n\n💊 Result = " +
+      pro +
+      "\n\n☆ Deatails By : @"+bot.name+"*",
+    parse_mode: "markdown"
+  })
+
+BJ's Credit : @NOOBX7
+API Credit : @Praveen_xd
+
+=======================================
+
+🤣 Random Hindi Jokes 🤣
+
+Command : /jokes
+BJS
+HTTP.get({
+        url: "https://indian-jokes-api.herokuapp.com/jokes/random",
+success: "/stone"
+      })
+
+Command:  /stone
+BJS:
+var result = JSON.parse(content)
+var stone1 = result.text
+var stone2 = result.category.value
+var caption = "🤣Haso Or Hasao🤣\n\n🤔\n"+stone1+"\n\n😂 "+stone2+""
+var photo = "https://t.me/JoKeSKiNg1577/2"
+Api.sendPhoto({ photo: photo, caption: caption })
+
+❤️ Credit: @sweet_banna
+❤️ Channel Credit: @rarecodes
+❤️ Api Credit : @sweet_banna
+
+❣️Copy With Credit❣️
+
+=======================================
+
+#tools 
+
+Quots Generator Bot codes
+
+
+🔘 Command - 📖 Generate Quots
+
+🔘 BJS - Api.sendChatAction({
+  chat_id: chat.chatid,
+  action: "typing"
+})
+Api.sendChatAction({
+  chat_id: chat.chatid,
+  action: "typing"
+})
+HTTP.get({
+  url: "https://api.quotable.io/random",
+  success: "/onLoading "})
+
+
+🔘 Command -  /onLoading 
+
+🔘 BJS - Api.sendChatAction({
+  chat_id: chat.chatid,
+  action: "typing"
+})
+Api.sendChatAction({
+  chat_id: chat.chatid,
+  action: "typing"
+})
+
+
+var c = JSON.parse(content)
+var t = c.author 
+var y = c.content 
+
+Api.sendMessage({text:"*Quote:* " + y +"\n\n*Author:* "+t+"",parse_mode: "Markdown"})
+
+
+Credit - @kswami9
+Presenting u by - @rarecodes
+
+=======================================
+
+#tools
+
+⁉️How to GetLive YouTube Subscribers
+
+Command : your command 
+
+Bjs :-  HTTP.get({
+  url:
+    "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=" YOUR CHANNEL ID "&key=AIzaSyBrnN1WZm8Bsx8V7AtqkKJVlKUdLobrOFc",
+  success: "/ytdone"
+})
+
+Command : /ytdone
+
+Bjs :-  var result = JSON.parse(content)
+var hi = result.items[0].statistics.subscriberCount
+var hello = result.items[0].statistics.videoCount
+var view = result.items[0].statistics.viewCount
+Bot.sendMessage(
+  "*Subscriber*: " +
+    hi +
+    "\n\n*Total Vedeo:* " +
+    hello +
+    "\n*View count*: " +
+    view +
+    ""
+)
+
+©Credit : Dont Know
+Presenting You By @rarecodes
+
+=======================================
+
+#tools 
+
+IP FINDER TOOL BJS
+
+Command = 🙌 Ip Info Finder 
+
+Answer = ✒️ Enter Ip Of That 
+
+BJs = Bot.sendMessage("*IP Info Generating Please Wait\nIt Can Take 10-20 Seconds*")
+HTTP.get({url: "https://ipapi.co/"+message+"/json/", success: "/onIpResult"})
+
+Command = /onIpResult
+
+BJs = var info = JSON.parse(content)
+var ip = info.ip
+var city = info.city
+var region = info.region
+var rc = info.region_code
+var country = info.country_name
+var cc = info.country_code_iso3
+var ccapital = info.country_capital
+var ccode = info.continent_code
+var pc = info.postal
+var lati = info.latitude
+var long = info.longitude
+var tzone = info.timezone
+var ccc = info.country_calling_code
+var cu = info.currency
+var cname = info.currency_name
+var lang = info.languages
+var ca = info.country_area
+var cp = info.country_population
+var uo = info.utc_offset
+var organisation = info.org
+if (content.includes("error")){
+Bot.sendMessage("*404 Error*\n🥴 Invaild Ip Address Given By User")
+return
+}else Bot.sendMessage("*Ip Info Generated ✅*\n\n*Ip*: "+ip+"\n*City*: "+city+"\n*Region*: "+region+"\n*Region Code*: "+rc+"\n*Contry Name*: "+country+"\n*Country Code*: "+cc+"\n*Country Area*: "+ca+"\n*Country Population*: "+cp+"\n*Country Capital*: "+ccapital+"\n*Continent Code*: "+ccode+"\n*Postal Code*: "+pc+"\n*Latitude*: "+lati+"\n*Longitude*: "+long+"\n*Time Zone*: "+tzone+"\n*Country Calling Code*: "+ccc+"\n*Currency*: "+cu+"\n*Currency Name*: "+cname+"\n*Languages* : "+lang+"\n*Utc Offset*: "+uo+"\n*Org*: "+organisation+"\n\n*✏️ Ip Info Generated By : @"+bot.name+"*")
+
+© Credit = @PIYUSH_raj007
+Presenting You By @rarecodes
+
+=======================================
+
+🔌 Code Request From @kinggautham
+
+❓How To Make Math Captcha In Bot.
+
+➡️ Command : /start
+
+➡️ BJS : 
+var qq = Libs.Random.randomInt(1,100)
+var question = Libs.Random.randomInt(1,100)
+var solve = qq + question
+Bot.setProperty("solve", solve, "string")
+Bot.sendMessage("*➡️ Solve This Captcha Before Using This Bot.\n\n✅ Solve It : "+question+" + "+qq+" = ?*")
+Bot.runCommand("Solve")
+
+➡️ Command : Solve
+
+➡️ Wait For Answer : On
+
+➡️ BJS : var solve = Bot.getProperty("solve")
+if(message == solve){
+Bot.sendMessage("*✅ You Have Been Successfully Pass The Captcha.*")
+Bot.runCommand("Your Next Command")
+
+}else{
+Bot.sendMessage("*❌ Wrong Answer ! Try Again.*")
+Bot.runCommand("Solve")
+}
+
+🌐 Code Dev : @Shadab_Alam
+
+=======================================
+
+#tools 
+
+🚺Gender Predicter bjs 
+
+❤️Command = /predict 
+
+❤️Answer = name
+
+❤️Wait for answer on
+
+Bjs
+
+HTTP.get({
+  url: "https://api.genderize.io/?name="+message+"",
+  success: "sys/gender"
+})
+
+
+❤️Command = sys/gender
+
+Bjs = 
+
+var msg = content
+var name = msg.split(/"/)[3]
+var gender = msg.split(/"/)[7]
+var pro = msg.split(/"/)[10]
+  Api.sendMessage({
+    text:
+      "*🔩 Gender Predicted\n\n💊 Name = " +
+      name +
+      "\n🛒 Gender = " +
+      gender +
+      "\n🎭 Probability = " +
+      pro +
+      "\n\n☆ Deatails By : @rarecodes*",
+    parse_mode: "markdown"
+  })
+
+Credit : @NOOBX7
+
+======================================
+
+#tools 
+
+Command= ❤️Text To Voice
+
+Answer = *🏂 Enter Your Message To Convert To Audio*
+
+Wait for answer - on
+
+Bjs =
+
+Bot.sendMessage("*Generating , it will take time*")
+Api.sendAudio({
+  audio: "https://lyciavoice.herokuapp.com/lycia?text=" + message + "&lang=en",
+  caption:
+    "*📝 Here Is Your Voice Message With Text: " +
+    message +
+    "\n\n\n🆔 Generated By @" +
+    bot.name +
+    ".*",
+  parse_mode: "Markdown",
+  reply_markup: {
+    inline_keyboard: [
+      [
+        { text: "⏏️Developer", url: "https://telegram.me/gaurav02" },
+        { text: "↩️ Back", callback_data: "main_menu" }
+      ]
+    ]
+  },
+  disable_web_page_preview: true
+})
+
+💳 Credit : @NOOBX7
+
+=======================================
+
+#fun
+
+FAKE MIA KHALIFA TWEET MAKER
+
+Command:  Mia Khalifa Tweet
+
+Answer : What Say Mia Khalifa ji?
+
+Wait For Answer: on
+
+BJS : 
+
+Api.sendPhoto({ photo: "http://modi-technostone-xyz.herokuapp.com/mia?text="+message+"" })
+
+
+CREDIT - @sweet_banna
+
+Copyright @rarecodes
+
+Copy With Credit Please
+
+=======================================
+
+#fun
+
+FAKE NARENDRA MODI (PM) TWEET MAKER
+
+Command:  Modi Tweet
+
+Answer : What Say Modi ji?
+
+Wait For Answer: on
+
+BJS : 
+
+Api.sendPhoto({ photo: "http://modi-technostone-xyz.herokuapp.com/modi?text="+message+"" })
+
+
+CREDIT - @sweet_banna
+
+©️Copyright @rarecodes
+
+=======================================
+
+⚠️⚠️ JOKES GENERATOR BJ'S ⚠️⚠️
+
+🧑‍💻 BJ'S = 
+HTTP.get({
+        url: "https://official-joke-api.appspot.com/jokes/random",
+success: "/j2"
+      })
+
+🧑‍🦯NEW COMMAND : /j2
+
+🧑‍💻 BJ'S = 
+var result = JSON.parse(content)
+var PS2 = result.setup
+var PS1 = result.punchline
+var caption = "*🤣JOKE FOR MAKING YOUR DAY🤣\n\n🤔 "+PS2+"\n\n😂 "+PS1+"*"
+var photo = "https://t.me/JoKeSKiNg1577/2"
+Api.sendPhoto({ photo: photo, caption: caption })
+
+⚠️ CODED BY : @SPIDY1577
+
+=======================================
+✖𝘼𝙇𝙇 𝘾𝙊𝘿𝙀𝙎 𝘽𝙔 @𝗭𝗚𝗢𝗗𝗣𝗔𝗣𝗔
+
+😍𝙅𝙊𝙄𝙉 𝙊𝙐𝙍 𝙊𝙁𝙁𝙄𝘾𝙄𝘼𝙇 𝘾𝙃𝘼𝙉𝙉𝙀𝙇~ 
+@𝘿𝘼𝙍𝙆𝙏𝙐𝙁𝙁
+
+`•.🚭𝐖𝐄 𝐀𝐑𝐄 𝐃𝐀𝐑𝐊🚭.•´
+
