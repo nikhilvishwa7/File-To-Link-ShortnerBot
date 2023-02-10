@@ -62,11 +62,8 @@ async def main(bot: Client, message: Message):
       send_msg = await message.forward(config.CHANNEL_ID)
       file_id = str(send_msg.message_id) 
       file_link = f"https://t.me/{config.BOT_USERNAME}?start=shortner_{file_id}"
-      KEY = "8644d61bb75d25519b6b0acdec99bf369fa1cbdd"
-      r = requests.get(f"https://easysky.in/api?api={KEY}&url={url}")
-      hey = r.json()["shortenedUrl"]
-      print(hey)
-      text_ok = await reply.edit(f"your file stored successfully to our database here is your url\n {hey}") 
+      print(file_link)
+      text_ok = await reply.edit(f"your file stored successfully to our database here is your url\n {file_link}") 
    except Exception as err:
       text_op = await reply.edit("f**ERROR**\n\n{err}\n\n**SEND ASAP TO SUPPORT FOR FIXES**") 
 
