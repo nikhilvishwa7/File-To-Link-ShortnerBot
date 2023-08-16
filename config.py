@@ -6,7 +6,7 @@ class config(object):
 	API_ID = int(os.environ.get("API_ID", "21748181"))
 	API_HASH = os.environ.get("API_HASH", "b1d962414e186e0778911f3183feac33")
 	BOT_TOKEN = os.environ.get("BOT_TOKEN", "6194259486:AAHleGiC0sq9pV8XHGtoa41RlsulFCTKLGI")
-	BOT_USERNAME = os.environ.get("BOT_USERNAME", "PyroStorageBot")
+	BOT_USERNAME = os.environ.get("BOT_USERNAME", "Rename_4GB_bot")
 	CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1001932233757"))
 	SUPPORT_GROUP = os.environ.get("SUPPORT_CHAT", "NewMovie1stOnTG")
 	SUPPORT_CHANNEL = os.environ.get("SUPPORT_CHANNEL", "bot_channel_011")
