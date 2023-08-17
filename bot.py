@@ -74,40 +74,5 @@ async def start(bot: Client, m: Message):
    if m.from_user.id in config.BANNED_USERS:
        await message.reply_text("**YOUR ARE BANNED**\n\nPlease contact bot support for more information",
                                  disable_web_page_preview=True)
-       return
-
-       
-    
-            START_TXT.format(m.from_user.first_name, m.from_user.id),
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("Support Group", url=f"https://t.me/{cofig.SUPPORT_CHAT}"),
-                        InlineKeyboardButton("Bots Channel", url=f"https://t.me/{config.SUPPORT_CHANNEL}")
-                    ],                    
-                ]
-            )
-        )
-    else:
-        try:
-            try:
-                file_id = int(usr_cmd).split("_")[-1])
-            GetMessage = await bot.get_messages(chat_id=config.CHANNEL_ID, message_ids=file_id)
-            message_ids = []
-            if GetMessage.text:
-                message_ids = GetMessage.text.split(" ")
-                _response_msg = await cmd.reply_text(
-                    text=f"**Total Files:** `{len(message_ids)}`",
-                    quote=True,
-                    disable_web_page_preview=True
-                )
-            else:
-                message_ids.append(int(GetMessage.message_id))
-            for i in range(len(message_ids)):
-                await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
-        except Exception as err:
-            text_op = await m.reply.text("f**ERROR**\n\n{err}\n\n**SEND ASAP TO SUPPORT FOR FIXES**") 
-
 
 Bot.start() 
