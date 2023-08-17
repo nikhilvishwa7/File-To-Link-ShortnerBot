@@ -78,7 +78,7 @@ async def start(bot: Client, m: Message):
 
        
     
-    usr_cmd = cmd.text.split("_", 1)
+    usr_cmd = cmd.text.split()[-1])
     if usr_cmd == "/start":
         await m.reply_text(
             START_TXT.format(m.from_user.first_name, m.from_user.id),
