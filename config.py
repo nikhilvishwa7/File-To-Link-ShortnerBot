@@ -8,7 +8,7 @@ class config(object):
 	BOT_TOKEN = os.environ.get("BOT_TOKEN", "6307039266:AAGpIhJ6xgGFEV6X7W6miVHb0TdaYnX4USU")
 	BOT_USERNAME = os.environ.get("BOT_USERNAME", "TestCorner07Bot")
 	CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1001537820228"))
-	SUPPORT_GROUP = os.environ.get("SUPPORT_CHAT", "NewMovie1stOnTG")
+	SUPPORT_GROUP = os.environ.get("SUPPORT_CHAT", "Spiderman_No_Way_home77")
 	SUPPORT_CHANNEL = os.environ.get("SUPPORT_CHANNEL", "Spiderman_No_Way_home77")
         BANNED_USERS = set(int(x) for x in os.environ.get("BANNED_USERS", '1234567890')).split()
         SHORTNER_SITE = os.environ.get("SHORTNER_SITE", "https://Omnifly.in.net")
